@@ -26,12 +26,15 @@ def assentos_disponiveis(sessao):
 
 
 def reservar_assento(sessao, id_assento):
+    confirma_reserva = True
     if sessao[5][id_assento - 1]:
         sessao[5][id_assento-1] = False
         print(f"Assento {id_assento} foi reservado!")
     else:
         print(f"Assento {id_assento} reservado ou inválido, por favor selecione outro assento")
+        confirma_reserva = False
 
+    return confirma_reserva
 def calcula_valor(sessao):
     sala = sessao[4]
     valor_calculado = sessao[3]
@@ -79,19 +82,23 @@ filmes = cadastro_filmes()
 sessoes = dados_sessoes(filmes)
 
 continuar = "sim"
-assentos_reservados = []
+
 while(continuar == "sim"):
-    
+    assentos_reservados = []
     quantidade_de_ingressos = 0
 
     print("Sessões disponíveis no catálogo: ")
    
     for sessao in sessoes:
         print(f"{sessao[0][0]} - {sessao[1]} às {sessao[2]} - Sala: {sessao[4]}")
-        
+    sessao_id = -1
     sessao_id = int(input("Escolha uma sessão(1 - 4): "))
-    sessao_User = sessoes[sessao_id-1]
     
+    while(sessao_id < 1 or sessao_id > 4):
+        sessao_id = int(input("Por favor, escolha um número entre 1 e 4"))
+    
+    sessao_User = sessoes[sessao_id-1]
+        
     print("ótimo! Agora escolha um assento disponível: ")
     
     
@@ -103,8 +110,8 @@ while(continuar == "sim"):
         print(assentos_disponiveis(sessao_User))
         assento_definido = int(input("Escolha seu número de assento: "))
         
-        reservar_assento(sessao_User, assento_definido)
-        assentos_reservados.append(assento_definido)
+        if(reservar_assento(sessao_User, assento_definido)):
+            assentos_reservados.append(assento_definido)
         pedido = input("Deseja continuar reservando assentos?(sim ou nao) ")   
         
     metodo_pagamento = input("Por favor, escolha a forma de pagamento(PIX, Dinheiro, Débito ou Crédito): ")
