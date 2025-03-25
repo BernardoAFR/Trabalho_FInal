@@ -117,5 +117,4 @@ while(continuar == "sim"):
     metodo_pagamento = input("Por favor, escolha a forma de pagamento(PIX, Dinheiro, Débito ou Crédito): ")
     
     comprovante_bilhete(sessao_User, assentos_reservados, quantidade_de_ingressos, metodo_pagamento )
-    
     continuar = input("\nContinuar compra(sim ou não): ")
