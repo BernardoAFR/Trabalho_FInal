@@ -105,12 +105,13 @@ while(continuar == "sim"):
     pedido = "sim"
     
     while(pedido == "sim"):
-        quantidade_de_ingressos += 1
+        
         
         print(assentos_disponiveis(sessao_User))
         assento_definido = int(input("Escolha seu número de assento: "))
         
         if(reservar_assento(sessao_User, assento_definido)):
+            quantidade_de_ingressos += 1
             assentos_reservados.append(assento_definido)
         pedido = input("Deseja continuar reservando assentos?(sim ou nao) ")   
         
