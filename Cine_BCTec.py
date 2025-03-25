@@ -105,9 +105,8 @@ while(continuar == "sim"):
         
         reservar_assento(sessao_User, assento_definido)
         assentos_reservados.append(assento_definido)
-        pedido = input("Deseja continuar reservando assentos?(sim ou nao) ")
-    print(quantidade_de_ingressos)
-   
+        pedido = input("Deseja continuar reservando assentos?(sim ou nao) ")   
+        
     metodo_pagamento = input("Por favor, escolha a forma de pagamento(PIX, Dinheiro, Débito ou Crédito): ")
     
     comprovante_bilhete(sessao_User, assentos_reservados, quantidade_de_ingressos, metodo_pagamento )
